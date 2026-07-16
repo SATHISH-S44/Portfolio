@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sathish S | Portfolio</title>
+  <meta name="description" content="Portfolio of Sathish S — final year Computer Science student, AI & Computer Vision enthusiast, web developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-2: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+      --radius: 1rem;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 7rem 0 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.12), transparent 50%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0f172a;
+      box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px -10px rgba(56, 189, 248, 0.5);
+    }
+    .btn-outline {
+      border: 1px solid var(--surface-2);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: var(--surface);
+      transform: translateY(-2px);
+    }
+
+    /* Sections */
+    section { padding: 5rem 0; }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 2px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: rgba(56, 189, 248, 0.2);
+    }
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      margin: 0.25rem 0.25rem 0 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* About */
+    .about-content {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #0f172a;
+      box-shadow: 0 20px 40px -10px rgba(56, 189, 248, 0.35);
+    }
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+    .stat span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Timeline */
+    .timeline {
+      border-left: 2px solid var(--surface-2);
+      padding-left: 1.5rem;
+      margin-left: 0.5rem;
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.65rem;
+      top: 0.35rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    }
+    .timeline-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .timeline-item .meta {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Contact */
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      font-weight: 500;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .contact-link:hover {
+      background: var(--surface-2);
+      border-color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2.5rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        inset: 64px 0 0 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        background: rgba(15, 23, 42, 0.98);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .menu-btn { display: block; }
+      .about-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+      .stats { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="#" class="logo">Sathish.</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Hi, I'm <span>Sathish S</span></h1>
+        <p>Final-year Computer Science student passionate about web development, computer vision, and building AI-driven solutions that solve real-world problems.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="avatar">S</div>
+        <div class="about-text">
+          <p>
+            I'm a final-year B.E. Computer Science and Engineering student at Nandha Engineering College with a CGPA of 8.5/10. My interests sit at the intersection of web development and AI — especially computer vision and intelligent systems.
+          </p>
+          <p>
+            I enjoy turning ideas into working products, whether that's a real-time fire detection system using YOLOv8 or a lightweight e-commerce storefront. I'm always looking for opportunities to learn, build, and contribute to meaningful projects.
+          </p>
+          <div class="stats">
+            <div class="stat"><strong>500+</strong><span>LeetCode Problems</span></div>
+            <div class="stat"><strong>8.5</strong><span>CGPA</span></div>
+            <div class="stat"><strong>3+</strong><span>Projects</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="card">
+        <h3>B.E. Computer Science and Engineering</h3>
+        <p class="meta" style="color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;">Nandha Engineering College · 2023 – 2027</p>
+        <p>CGPA: 8.5 / 10.0</p>
+      </div>
+    </section>
+
+    <section id="projects" class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>AI Fire Detection Alert System</h3>
+          <span class="tag">YOLOv8</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Real-time</span>
+          <p style="margin-top: 0.75rem;">
+            Built a real-time AI fire detection system using YOLOv8 with 80% accuracy. It continuously monitors video footage, captures incident clips, and sends alerts with timestamps and geo-location. Designed for smart homes, offices, and industrial safety.
+          </p>
+        </div>
+        <div class="card">
+          <h3>E-Commerce Storefront</h3>
+          <span class="tag">React</span>
+          <span class="tag">Excel</span>
+          <span class="tag">WhatsApp API</span>
+          <p style="margin-top: 0.75rem;">
+            A simple React-based departmental store app where products are managed through an Excel sheet. The site auto-updates based on Excel data, and customer orders are sent directly to the store owner's WhatsApp.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>AI Intern</h3>
+          <div class="meta">ShellKode · Jun 2025 – Jul 2025</div>
+          <p>
+            Worked on AI-driven solutions with hands-on practice in machine learning, computer vision, and AI agents. Gained practical exposure to real-world problem solving and end-to-end solution development.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="container">
+      <h2 class="section-title">Achievements</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>LeetCode</h3>
+          <p>Solved 500+ problems, sharpening data structures, algorithms, and problem-solving skills.</p>
+        </div>
+        <div class="card">
+          <h3>HackerRank</h3>
+          <p>Completed Java basics certification, building a solid foundation in core programming.</p>
+        </div>
+        <div class="card">
+          <h3>Academic</h3>
+          <p>Maintaining a CGPA of 8.5/10 while working on projects and internships.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="section-title">Contact</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Open to opportunities in web development, AI, and computer vision. Let's connect.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:sathish1544k@gmail.com" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          Email
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/sathish-s-a988192a3/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn
+        </a>
+        <a class="contact-link" href="https://github.com/SATHISH-S44" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+          GitHub
+        </a>
+        <a class="contact-link" href="https://wa.me/916382770266" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          +91 63827 70266
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Sathish S. Built with HTML, CSS & JavaScript.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const isOpen = navLinks.classList.contains('open');
+      menuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-label', 'Open menu');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
